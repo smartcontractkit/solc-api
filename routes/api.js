@@ -3,7 +3,16 @@ var solc = require('solc');
 var abi = require('solc/abi')
 var router = express.Router();
 
-/* GET users listing. */
+/**
+  Compiles the given Solidity Sources.
+  Ref 1: https://solidity.readthedocs.io/en/develop/using-the-compiler.html#input-description
+  Ref 2: https://solidity.readthedocs.io/en/develop/using-the-compiler.html#output-description
+
+  Body Input: Body input is a JSON object keyed by sol file name.
+  See Ref 1 under the "sources:" key.
+
+  Returns: Solidity standard JSON output. See Ref 2
+*/
 router.post('/compile', function(req, res, next) {
   var compiled = solc.compile({sources: req.body}, 1);
 
